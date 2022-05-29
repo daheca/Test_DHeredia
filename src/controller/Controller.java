@@ -3,7 +3,10 @@ package controller;
 import view.MenuView;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
+import model.Cart;
 import model.Commerce;
 import model.Product;
 
@@ -25,6 +28,7 @@ public class Controller {
 		commerce.injectProducts();
 	}
 
+	// Añade carro e inicia subproceso revisando tiempo en milisec actual
 	public void addCart() {
 		commerce.createCart();
 		if (!this.isStarted) {
@@ -37,12 +41,12 @@ public class Controller {
 		this.isStarted = true;
 	}
 
-	public void getCarts() {
-		commerce.getCarts();
+	public ConcurrentHashMap<Integer, Cart> getCarts() {
+		return commerce.getCarts();
 	}
 
-	public void findCartById(int cartId) {
-		commerce.findCartById(cartId);
+	public List<Product> findCartById(int cartId) {
+		return commerce.findCartById(cartId);
 	}
 
 	public void deleteCart(int cartId) {

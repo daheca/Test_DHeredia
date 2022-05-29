@@ -24,8 +24,8 @@ public class Commerce extends Thread {
 		this.products.put(6, new Product(6, "Chaqueta", 15));
 	}
 
-	public HashMap<Integer, Product> getProducts() {		
-		return this.products;	
+	public HashMap<Integer, Product> getProducts() {
+		return this.products;
 	}
 
 	public void addProduct(int idProd, int idCart) {
@@ -36,7 +36,7 @@ public class Commerce extends Thread {
 		Cart cart = new Cart();
 		cart.setTotalAmount(0);
 		cart.setTimeCreation(System.currentTimeMillis());
-		this.carts.put(this.carts.size()+ 1, cart);
+		this.carts.put(this.carts.size() + 1, cart);
 	}
 
 	public void deleteCart(int cartId) {
@@ -45,25 +45,13 @@ public class Commerce extends Thread {
 		}
 	}
 
-	public void getCarts() {
-		for (Map.Entry<Integer, Cart> set : this.carts.entrySet()) {
-			System.out.println(set.getKey() + "  | \t" + set.getValue().getTotalAmount() + "\t | \t"
-					+ set.getValue().getTimeCreation());
-		}
+	public ConcurrentHashMap<Integer, Cart> getCarts() {
+		return this.carts;
 	}
 
-	public void findCartById(int selectCartId) {
-		System.out.println(this.carts.get(selectCartId).getTimeCreation() + "\n"
-				+ this.carts.get(selectCartId).getTotalAmount() + "\nLista de productos:\n");
-
+	public List<Product> findCartById(int selectCartId) {
 		List<Product> productList = this.carts.get(selectCartId).getProducts();
-
-		for (Product product : productList) {
-			System.out.println(product.getDescription() + " - " + product.getAmount());
-		}
-
-		System.out.println(
-				"--------------------------------------\nTotal\t\t" + this.carts.get(selectCartId).getTotalAmount());
+		return productList;
 	}
 
 	private static int convertMilSec(int min) {
@@ -80,7 +68,6 @@ public class Commerce extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println(this.carts.size());
 
 		try {
 			while (true) {

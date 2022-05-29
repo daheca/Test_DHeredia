@@ -4,8 +4,8 @@ public class Product {
 
 	private int id;
 	private String description;
-	private int amount;
-	
+	private double amount;
+
 	public Product(int id, String description, int amount) {
 		this.id = id;
 		this.description = description;
@@ -28,14 +28,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	
-	
-
 }

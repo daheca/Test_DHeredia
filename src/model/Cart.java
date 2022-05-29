@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart{
+public class Cart {
 
 	private List<Product> products;
-	private int totalAmount;
+	private double totalAmount;
 	private long timeCreation;
-	
+
 	public Cart() {
 		this.products = new ArrayList<Product>();
 	}
@@ -27,7 +27,7 @@ public class Cart{
 		this.products = products;
 	}
 
-	public int getTotalAmount() {
+	public double getTotalAmount() {
 		return totalAmount;
 	}
 
@@ -42,16 +42,9 @@ public class Cart{
 	public void setTimeCreation(long timeCreation) {
 		this.timeCreation = timeCreation;
 	}
-	
+
 	public void addProduct(Product product) {
 		products.add(product);
 		this.totalAmount += product.getAmount();
 	}
-
-	private void calcTotalAmount(List<Product> products) {		
-		for(int i=0;i<products.size();i++) {
-			this.totalAmount += products.get(i).getAmount();
-		}
-	}
-	
 }
